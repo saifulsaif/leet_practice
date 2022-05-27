@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Reverse Integer Number</h2>
+
+<p id="demo"></p>
+
+<script>
+class IntegerReverse {
+
+
+ reverse(x){
+
+ var  sign_multiplier = 1;
+  if(x < 0){
+  	sign_multiplier = -1 ;
+  	x = x * sign_multiplier;
+  }
+
+ var number = x; 	
+ var result = 0;
+ var currentDigit = 0;
+
+   for(var i = 1; i <= x.toString().length ; i++){
+   	   currentDigit = number % 10;
+	   result = result * 10 + currentDigit;
+	   number = parseInt(number/10);
+   }
+
+ 	return (sign_multiplier * result);
+ }
+
+}
+var inputNumber = -1234;
+const myCar = new IntegerReverse();
+var reverseInt = myCar.reverse(inputNumber);
+document.getElementById("demo").innerHTML =
+ " The reverse number is : " + reverseInt+"<br>Giver number is "+inputNumber;
+</script>
+
+</body>
+</html>
