@@ -28,12 +28,14 @@ class IntegerReverse {
 	   result = result * 10 + currentDigit;
 	   number = parseInt(number/10);
    }
-
- 	return (sign_multiplier * result);
+    var final_result = sign_multiplier * result;
+	var maxInteger = Math.pow(2, 31) - 1;
+	var minInteger = (-(Math.pow(2, 31)));
+	return (final_result < minInteger || final_result > maxInteger) ? 0 : final_result;
  }
 
 }
-var inputNumber = -1234;
+var inputNumber = -123;
 const myCar = new IntegerReverse();
 var reverseInt = myCar.reverse(inputNumber);
 document.getElementById("demo").innerHTML =
