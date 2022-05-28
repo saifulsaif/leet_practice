@@ -17,7 +17,6 @@ class IntegerToRoman {
     var result = '';
 
     while(num !== 0) {
-        console.log(num)
         for(var i = 0 ; i < valueList.length ; i++) {
             if(num >= valueList[i]){
                 result += list[i]
