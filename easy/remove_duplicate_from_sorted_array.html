@@ -12,11 +12,15 @@ class ControllerClass {
 
  removeDuplicate(nums){
     let i = 0;
-    for (let j = 0; j < nums.length; j++) {
-        if (nums[j] != nums[i]) 
-            nums[++i] = nums[j];
+    while(i < nums.length - 1){
+        let j = i + 1;
+        if(nums[i] === nums[j]){
+            nums.splice(j,1);
+        }else{
+            i++
+        }
     }
-    return ++i;
+    return nums.length;
  }
 
 }
@@ -26,7 +30,7 @@ const obj = new ControllerClass();
 var result = obj.removeDuplicate(nums);
 
 document.getElementById("demo").innerHTML =
- " The result is : " + result+"<br>Giver input is nums =  [1,1,2,2,3,3,4]";
+ " The result is : " + result+"<br>Giver input is nums = [1,1,2]";
 </script>
 
 </body>

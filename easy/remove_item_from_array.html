@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Remove Item From Array</h2>
+
+<p id="demo"></p>
+
+<script>
+class ControllerClass {
+
+ removeItem(nums, val){
+    // var newArray = nums.filter(function(value, index, arr){ 
+    //     return value != val;
+    // });
+    
+    // console.log(newArray,nums);
+
+    // return newArray.length;
+
+    let i = 0;
+    while(i < nums.length){
+        console.log(val, nums[i]);
+        if(nums[i] == val ){
+            nums.splice(i,1);
+        }else{
+            i++
+        }
+
+    }
+   console.log(nums);
+    return nums;
+ }
+
+}
+var nums = [3,2,2,3];
+var target = 3;
+const obj = new ControllerClass();
+
+var result = obj.removeItem(nums, target);
+
+document.getElementById("demo").innerHTML =
+ " The result is : " + result+"<br>Giver input is nums =  [1,1,2,2,3,3,4] <br> Delete value : 2";
+</script>
+
+</body>
+</html>
