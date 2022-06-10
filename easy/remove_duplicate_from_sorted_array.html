@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Remove Duplicate Number From Array</h2>
+
+<p id="demo"></p>
+
+<script>
+class ControllerClass {
+
+ removeDuplicate(nums){
+    let i = 0;
+    for (let j = 0; j < nums.length; j++) {
+        if (nums[j] != nums[i]) 
+            nums[++i] = nums[j];
+    }
+    return ++i;
+ }
+
+}
+var nums = [1,1,2,2,3,3,4];
+const obj = new ControllerClass();
+
+var result = obj.removeDuplicate(nums);
+
+document.getElementById("demo").innerHTML =
+ " The result is : " + result+"<br>Giver input is nums = [1,1,2]";
+</script>
+
+</body>
+</html>

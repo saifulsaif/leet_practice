@@ -22,7 +22,7 @@ class binarySearch {
         return -1;
     }
     
-    }
+}
     var numArray = [2, 5, 6, 8, 9, 10];
     var target = 10;
     var n = numArray.length; // array length
