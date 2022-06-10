@@ -11,26 +11,15 @@
 class ControllerClass {
 
  removeItem(nums, val){
-    // var newArray = nums.filter(function(value, index, arr){ 
-    //     return value != val;
-    // });
     
-    // console.log(newArray,nums);
-
-    // return newArray.length;
-
-    let i = 0;
-    while(i < nums.length){
-        console.log(val, nums[i]);
-        if(nums[i] == val ){
-            nums.splice(i,1);
-        }else{
-            i++
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === val) {
+            nums.splice(i, 1);
+            i--;
         }
-
     }
-   console.log(nums);
-    return nums;
+
+  return nums.length;
  }
 
 }
