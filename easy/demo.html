@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <!-- AIzaSyA9WkG8D3hYLCBjgmzvZpPftP8szzqG1x8 -->
+    <!-- AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM -->
+
+    <!-- client ID : 324447761559-20g4eiddi2gldifhio9dql43angidcvs.apps.googleusercontent.com -->
+    <!-- client secret : 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 -->
+
+    <h2>Calendar API</h2>
+
+    <p id="demo"></p>
+
+    <script>
+        class GoogleCalendarAPI {
+
+            events(x) {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', 'https://www.googleapis.com/calendar/v3/calendars/saifulsaif814@gmail.com/events?key=AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM', true);
+
+                xhr.onload = function () {
+                    if (this.status === 200) {
+                        // console.log(this.responseText);
+
+                        const events = JSON.parse(this.responseText);
+                        console.log(events.items);
+                        x = events.items;
+                        return events.items;
+
+                    }
+                }
+                xhr.send();
+
+                return x;
+            }
+
+        }
+
+        const calendar = new GoogleCalendarAPI();
+
+        var event = calendar.events(12);
+
+        console.log(calendar, event);
+
+    </script>
+
+</body>
+
+</html>
