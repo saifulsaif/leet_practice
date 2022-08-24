@@ -17,23 +17,35 @@
         class GoogleCalendarAPI {
 
             events(x) {
-                const xhr = new XMLHttpRequest();
+                var xhr = new XMLHttpRequest();
                 xhr.open('GET', 'https://www.googleapis.com/calendar/v3/calendars/saifulsaif814@gmail.com/events?key=AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM', true);
 
-                xhr.onload = function () {
+                // var events = xhr.onload = function () {
+                //     if (this.status === 200) {
+                //         // console.log(this.responseText);
+
+                //         const events = JSON.parse(this.responseText);
+                //         console.log(events.items);
+                //         return events.items;
+
+                //     }
+                // }
+                var event = '';
+                xhr.send();
+                xhr.onload = function (event) {
                     if (this.status === 200) {
                         // console.log(this.responseText);
 
                         const events = JSON.parse(this.responseText);
-                        console.log(events.items);
-                        x = events.items;
+                        event = events.items;
+                        console.log(events.items, 'in');
                         return events.items;
 
                     }
+                    return '1000';
                 }
-                xhr.send();
 
-                return x;
+                return xhr.responseText;
             }
 
         }
@@ -43,6 +55,7 @@
         var event = calendar.events(12);
 
         console.log(calendar, event);
+
 
     </script>
 

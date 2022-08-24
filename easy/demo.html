@@ -3,48 +3,93 @@
 
 <body>
 
-    <!-- AIzaSyA9WkG8D3hYLCBjgmzvZpPftP8szzqG1x8 -->
-    <!-- AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM -->
-
-    <!-- client ID : 324447761559-20g4eiddi2gldifhio9dql43angidcvs.apps.googleusercontent.com -->
-    <!-- client secret : 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 -->
-
-    <h2>Calendar API</h2>
-
-    <p id="demo"></p>
-
     <script>
-        class GoogleCalendarAPI {
 
-            events(x) {
-                const xhr = new XMLHttpRequest();
-                xhr.open('GET', 'https://www.googleapis.com/calendar/v3/calendars/saifulsaif814@gmail.com/events?key=AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM', true);
+        const calendar_id = 'saifulsaif814@gmail.com';
+        const API_key = 'AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM';
+        const api_url = 'https://www.googleapis.com/calendar/v3/calendars';
 
-                xhr.onload = function () {
-                    if (this.status === 200) {
-                        // console.log(this.responseText);
+    const id = '7so3160oaf237o9tivk0h80uvv';
 
-                        const events = JSON.parse(this.responseText);
-                        console.log(events.items);
-                        x = events.items;
-                        return events.items;
 
-                    }
-                }
-                xhr.send();
 
-                return x;
-            }
 
-        }
+    var getGoogleEvents = function (httpMethod, url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(httpMethod, url);
+        xhr.onload = function () {
+            callback(null, xhr.response);
+        };
+        xhr.onerror = function () {
+            callback(xhr.response);
+        };
+        xhr.send();
+    }
 
-        const calendar = new GoogleCalendarAPI();
 
-        var event = calendar.events(12);
 
-        console.log(calendar, event);
+    getGoogleEvents("GET", '' + api_url + '/' + calendar_id + '/events?key=' + API_key, function (err, response) {
+        // Do your post processing here.
+        if (err) {
+            console.log("Error!");
+    }
+    // This is just basic code; you can modify it to suit your needs.
+    const events = JSON.parse(response);
+    event = events.items;
+    console.log(event, 'Your events array');
+    return event;
+});
+        oauthSignIn();
+        // getGoogleEvents("DELETE", '' + api_url + '/' + calendar_id + '/events/' + id, function (err, response) {
+        //     // Do your post processing here.
+        //     if (err) { console.log("Error!"); }
+        //     // This is just basic code; you can modify it to suit your needs.
+        //     const events = JSON.parse(response);
+        //     event = events.items;
+        //     console.log(event, 'Your events array');
+        //     return event;
+        // });
 
-    </script>
+
+        /*
+         * Create form to request access token from Google's OAuth 2.0 server.
+         */
+        function oauthSignIn() {
+            // Google's OAuth 2.0 endpoint for requesting an access token
+            var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+            // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+            var form = document.createElement('form');
+            form.setAttribute('method', 'GET'); // Send as a GET request.
+            form.setAttribute('action', oauth2Endpoint);
+
+            // Parameters to pass to OAuth 2.0 endpoint.
+            var params = {
+                'client_id': '324447761559-b89v0jqj0sbjgk622m1ijef528786k48.apps.googleusercontent.com',
+                'redirect_uri': 'https://www.google.com/',
+                'response_type': 'token',
+                'scope': 'https://www.googleapis.com/auth/calendar',
+                'include_granted_scopes': 'true',
+                'state': 'pass-through value'
+            };
+
+    // Add form parameters as hidden input values.
+    for (var p in params) {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', p);
+        input.setAttribute('value', params[p]);
+        form.appendChild(input);
+    }
+
+    // Add form to page and submit it to open the OAuth 2.0 endpoint.
+    document.body.appendChild(form);
+    form.submit();
+}
+
+
+
+</script>
 
 </body>
 
