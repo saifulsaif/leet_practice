@@ -18,18 +18,8 @@
 
             events(x) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', 'https://www.googleapis.com/calendar/v3/calendars/saifulsaif814@gmail.com/events?key=AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM', true);
-
-                // var events = xhr.onload = function () {
-                //     if (this.status === 200) {
-                //         // console.log(this.responseText);
-
-                //         const events = JSON.parse(this.responseText);
-                //         console.log(events.items);
-                //         return events.items;
-
-                //     }
-                // }
+                xhr.open("GET", "https://www.googleapis.com/calendar/v3/calendars/saifulsaif814@gmail.com/events?key=AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM");
+                xhr.setRequestHeader("Authorization", "Bearer ya29.a0AVA9y1u0MgcjXAGLlxN9aBnDjm7-kG9BUR7CybdzbRwxiNthtb2DFFEA1JaebkF-gDbJU2hOhORlb-5fmkr0EQd6sGAS-jrWGt3xL5qjX8clF-d4sUcHvVDKLKhNmPQbtf63kGkTMjWJ8iuAexhic1J-Mjc6aCgYKATASATASFQE65dr8qB9K-pLaC-xm45AEaIXBwA0163");
                 var event = '';
                 xhr.send();
                 xhr.onload = function (event) {

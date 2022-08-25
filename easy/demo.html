@@ -7,54 +7,75 @@
 
         const calendar_id = 'saifulsaif814@gmail.com';
         const API_key = 'AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM';
+            const client_id = '324447761559-b89v0jqj0sbjgk622m1ijef528786k48.apps.googleusercontent.com';
         const api_url = 'https://www.googleapis.com/calendar/v3/calendars';
+            const redirect_url = 'https://www.google.com/';
+            const id = '7so3160oaf237o9tivk0h80uvv';
 
-    const id = '7so3160oaf237o9tivk0h80uvv';
-
-
-
-
-    var getGoogleEvents = function (httpMethod, url, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open(httpMethod, url);
-        xhr.onload = function () {
-            callback(null, xhr.response);
-        };
-        xhr.onerror = function () {
-            callback(xhr.response);
-        };
-        xhr.send();
-    }
+            // access token
+            //  oauthSignIn(client_id, redirect_url);
 
 
+                    var getGoogleEvents = function (httpMethod, url, callback) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open(httpMethod, url);
+                        xhr.onload = function () {
+                            callback(null, xhr.response);
+                        };
+                        xhr.onerror = function () {
+                            callback(xhr.response);
+                        };
+                        xhr.send();
+                    }
 
-    getGoogleEvents("GET", '' + api_url + '/' + calendar_id + '/events?key=' + API_key, function (err, response) {
-        // Do your post processing here.
-        if (err) {
-            console.log("Error!");
-    }
-    // This is just basic code; you can modify it to suit your needs.
-    const events = JSON.parse(response);
-    event = events.items;
-    console.log(event, 'Your events array');
-    return event;
-});
-        oauthSignIn();
-        // getGoogleEvents("DELETE", '' + api_url + '/' + calendar_id + '/events/' + id, function (err, response) {
-        //     // Do your post processing here.
-        //     if (err) { console.log("Error!"); }
-        //     // This is just basic code; you can modify it to suit your needs.
-        //     const events = JSON.parse(response);
-        //     event = events.items;
-        //     console.log(event, 'Your events array');
-        //     return event;
-        // });
+
+
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.withCredentials = true;
+
+                    xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === 4) {
+                            console.log(this.responseText);
+                        }
+                    });
+
+                    xhr.open("DELETE", "https://www.googleapis.com/calendar/v3/calendars/saifulsaif814@gmail.com/events/183l4hpkr0a01draqae14m7gq6");
+                    xhr.setRequestHeader("Authorization", "Bearer ya29.a0AVA9y1uwZRJKHM0mnQJ3crw2FN5RwN7SRJP-R_4X3pL9-livE2jRWLdHg7seGhMLpWGIVo-RWfiW5Z6iGmzWrk6BqYFh5WZsoNg2VhH2hkneDVMhstXWHSmxpAS8dx00ePGboLo4gGt7e4RBUgGDVm2Rq8KxAgaCgYKATASATASFQE65dr8SFINGvoSeO9F012j7zqSnA0165");
+
+                    xhr.send();
+
+
+                
+
+                    getGoogleEvents("GET", '' + api_url + '/' + calendar_id + '/events?key=' + API_key, function (err, response) {
+                        // Do your post processing here.
+                        if (err) {
+                            console.log("Error!");
+                        }
+                        // This is just basic code; you can modify it to suit your needs.
+                        const events = JSON.parse(response);
+                        event = events.items;
+                        console.log(event, 'Your events array');
+                        return event;
+                    });
+
+
+        // xhr.open("GET", "https://www.googleapis.com/calendar/v3/calendars/saifulsaif814@gmail.com/events?key=AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM");
+        // xhr.setRequestHeader("Authorization", "Bearer ya29.a0AVA9y1u0MgcjXAGLlxN9aBnDjm7-kG9BUR7CybdzbRwxiNthtb2DFFEA1JaebkF-gDbJU2hOhORlb-5fmkr0EQd6sGAS-jrWGt3xL5qjX8clF-d4sUcHvVDKLKhNmPQbtf63kGkTMjWJ8iuAexhic1J-Mjc6aCgYKATASATASFQE65dr8qB9K-pLaC-xm45AEaIXBwA0163");
+
+
+
+
+
+
+
 
 
         /*
          * Create form to request access token from Google's OAuth 2.0 server.
          */
-        function oauthSignIn() {
+                    function oauthSignIn(client_id, redirect_url) {
             // Google's OAuth 2.0 endpoint for requesting an access token
             var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
 
@@ -66,7 +87,7 @@
             // Parameters to pass to OAuth 2.0 endpoint.
             var params = {
                 'client_id': '324447761559-b89v0jqj0sbjgk622m1ijef528786k48.apps.googleusercontent.com',
-                'redirect_uri': 'https://www.google.com/',
+                'redirect_uri': redirect_url,
                 'response_type': 'token',
                 'scope': 'https://www.googleapis.com/auth/calendar',
                 'include_granted_scopes': 'true',
