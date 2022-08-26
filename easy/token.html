@@ -4,10 +4,10 @@
 <body>
 
     <script>
-        const auth_url = 'https://accounts.google.com/o/oauth2/v2/auth';
-        const client_id = '324447761559-b89v0jqj0sbjgk622m1ijef528786k48.apps.googleusercontent.com';
-        const redirect_url = 'https://www.google.com/';
-        const scope = 'https://www.googleapis.com/auth/calendar';
+            const auth_url = 'https://accounts.google.com/o/oauth2/v2/auth'; // don't need to change
+            const client_id = '324447761559-b89v0jqj0sbjgk622m1ijef528786k48.apps.googleusercontent.com';  // get client id from google console
+            const redirect_url = 'https://www.google.com/';  // you need to set your redirect url on google console credentials
+            const scope = 'https://www.googleapis.com/auth/calendar'; // don't need to change
 
         /*  Call auth function for token */
         oauthSignIn(client_id, redirect_url, scope, auth_url);
