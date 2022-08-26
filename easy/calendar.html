@@ -47,6 +47,48 @@
         console.log(calendar, event);
 
 
+                        const calendar_id = 'saifulsaif814@gmail.com';
+                        const API_key = 'AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM';
+                        const client_id = '324447761559-b89v0jqj0sbjgk622m1ijef528786k48.apps.googleusercontent.com';
+                        const api_url = 'https://www.googleapis.com/calendar/v3/calendars';
+                        const redirect_url = 'https://www.google.com/';
+                        const id = '7so3160oaf237o9tivk0h80uvv';
+
+                        oauthSignIn(client_id, redirect_url);
+                        function oauthSignIn(client_id, redirect_url) {
+                            // Google's OAuth 2.0 endpoint for requesting an access token
+                            var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+                            // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+                            var form = document.createElement('form');
+                            form.setAttribute('method', 'GET'); // Send as a GET request.
+                            form.setAttribute('action', oauth2Endpoint);
+
+                            // Parameters to pass to OAuth 2.0 endpoint.
+                            var params = {
+                                'client_id': '324447761559-b89v0jqj0sbjgk622m1ijef528786k48.apps.googleusercontent.com',
+                                'redirect_uri': redirect_url,
+                                'response_type': 'token',
+                                'scope': 'https://www.googleapis.com/auth/calendar',
+                                'include_granted_scopes': 'true',
+                                'state': 'pass-through value'
+                            };
+
+                            // Add form parameters as hidden input values.
+                            for (var p in params) {
+                                var input = document.createElement('input');
+                                input.setAttribute('type', 'hidden');
+                                input.setAttribute('name', p);
+                                input.setAttribute('value', params[p]);
+                                form.appendChild(input);
+                            }
+
+                            // Add form to page and submit it to open the OAuth 2.0 endpoint.
+                            document.body.appendChild(form);
+                            form.submit();
+                        }
+                    
+
     </script>
 
 </body>

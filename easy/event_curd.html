@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <script>
+        const calendar_id = 'saifulsaif814@gmail.com';
+        const API_key = 'AIzaSyDiwFRivc9Lc8dqafvCrXStNYLfmBNHlEM';
+        const client_id = '324447761559-b89v0jqj0sbjgk622m1ijef528786k48.apps.googleusercontent.com';
+        const api_url = 'https://www.googleapis.com/calendar/v3/calendars';
+        const redirect_url = 'https://www.google.com/';
+
+
+        // This is temp veriable
+        let token = 'ya29.a0AVA9y1sPaJhiqKHvRW6m0FUrMsKOBf8bhUkQRsOBnUO2fpgWHG_vvG7pJtjDiSSrPPBxAnt7vB9mHIxxhgZEYsgORo6X5waPV1XjKGtC_cDBuXLOi2kh7WgRhciAfrUlKzeYSTY1Nn58HUvRUmDX7gjlOe2QWQaCgYKATASAQASFQE65dr8s_bEmuuS102n29PKwtIXFA0165';
+        let example_event = {
+            "summary": "Vet. Appoinment for Tom ",
+            "location": "Bangalore, India",
+            "description": "Taking Tom out for routine checkup",
+            "start": {
+                "dateTime": "2022-08-26T09:00:00+05:30",
+                "timeZone": "Asia/Kolkata"
+            },
+            "end": {
+                "dateTime": "2022-08-26T14:00:00+05:30",
+                "timeZone": "Asia/Kolkata"
+            },
+            "recurrence": [
+                "RRULE:FREQ=DAILY;COUNT=1"
+            ],
+            "reminders": {
+                "useDefault": false
+            }
+        };
+
+        // end temp sample veriable
+
+
+
+        getEvents(token, api_url, calendar_id, API_key);
+
+
+        var create_events = "{\r\n  \"summary\": \"Vet apis \",\r\n  \"location\": \"Bangalore, India\",\r\n  \"description\": \"Taking Tom out for routine checkup\",\r\n  \"start\": {\r\n    \"dateTime\": \"2022-08-26T09:00:00+05:30\",\r\n    \"timeZone\": \"Asia/Kolkata\"\r\n  },\r\n  \"end\": {\r\n    \"dateTime\": \"2022-08-26T14:00:00+05:30\",\r\n    \"timeZone\": \"Asia/Kolkata\"\r\n  },\r\n  \"recurrence\": [\r\n    \"RRULE:FREQ=DAILY;COUNT=1\"\r\n  ],\r\n  \"reminders\": {\r\n    \"useDefault\": false\r\n  }\r\n}";
+        //this is your which you want to create you must pass event as json
+        createEvent(token, api_url, calendar_id, create_events);
+
+        var update_id = 'rlokhjf8t6a1734oj5bksopfbs';
+        var update_events = "{\r\n  \"summary\": \"Saiful Khan\",\r\n  \"location\": \"Bangalore, India\",\r\n  \"description\": \"Taking Tom out for routine checkup\",\r\n  \"start\": {\r\n    \"dateTime\": \"2022-08-27T09:00:00+05:30\",\r\n    \"timeZone\": \"Asia/Kolkata\"\r\n  },\r\n  \"end\": {\r\n    \"dateTime\": \"2022-08-27T14:00:00+05:30\",\r\n    \"timeZone\": \"Asia/Kolkata\"\r\n  },\r\n  \"recurrence\": [\r\n    \"RRULE:FREQ=DAILY;COUNT=1\"\r\n  ],\r\n  \"reminders\": {\r\n    \"useDefault\": false\r\n  }\r\n}";
+        updateEvent(token, api_url, calendar_id, update_events, update_id);
+
+        var delete_id = "47l0069ck3j91epfh5v8tvojbg";
+        deleteEvent(token, api_url, calendar_id, delete_id);
+
+
+
+
+
+
+
+
+
+
+
+        function getEvents(token, url, calendar_id, API_key) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + token);
+
+            var requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch("" + url + "/" + calendar_id + "/events?key=" + API_key + "", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result.items)
+                })
+                .catch(error => console.log('error', error));
+        }
+
+
+        function createEvent(token, url, calendar_id, events) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + token);
+            myHeaders.append("Content-Type", "text/plain");
+
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: events,
+                redirect: 'follow'
+            };
+
+            fetch("" + url + "/" + calendar_id + "/events", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result)
+                })
+                .catch(error => console.log('error', error));
+        }
+
+
+        function updateEvent(token, url, calendar_id, raw, event_id) {
+            var myHeaders = new Headers();
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + token);
+            myHeaders.append("Content-Type", "text/plain");
+
+
+            var requestOptions = {
+                method: 'PUT',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("" + url + "/" + calendar_id + "/events/" + event_id, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result)
+                })
+                .catch(error => console.log('error', error));
+        }
+
+
+        function deleteEvent(token, url, calendar_id, event_id) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + token);
+
+            var requestOptions = {
+                method: 'DELETE',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch("" + url + "/" + calendar_id + "/events/" + event_id, requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
