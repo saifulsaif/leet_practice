@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <script>
+
+        //    use your code
+        async function getCalendarEvent() {
+            const response = await fetch(
+                'https://www.googleapis.com/calendar/v3/calendars/saifulsaif@gmail.com/events?key=AIzaSyDiwFRivc9Lc8qafvjCrXStNYLfmBNHlEM',
+                {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ya29.a0AVA9y1sE83qa0fLP9_8qsG3y8yob0WOtRQJMSC2_EQLVbq2SfZftQqsPtQ_DfyZG7b0aYKDMe_u-hQr3vOxox54fGaapVIt_f3irF4S6oedWTmW0UyYPfrUxOMr0TadV7LpLqtdjt18-w14QorEiEI8ZpMGtMAaCgYKATASAQASFQE65dr8_Ai8DcdIiKOv5Y0SSzBAgw0165',
+                    }
+                }
+            );
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log(data.items);
+        }
+
+        getCalendarEvent();
+
+
+
+        // use My code 
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer ya29.a0AVA9y1sE83qa0fLP9_8qsG3y8yob0WOtRQJMSC2_EQLVbq2SfZftQqsPtQ_DfyZG7b0aYKDMe_u-hQr3vOxox54fGaapVIt_f3irF4S6oedWTmW0UyYPfrUxOMr0TadV7LpLqtdjt18-w14QorEiEI8ZpMGtMAaCgYKATASAQASFQE65dr8_Ai8DcdIiKOv5Y0SSzBAgw0165");
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+        fetch("https://www.googleapis.com/calendar/v3/calendars/saifulsaif@gmail.com/events?key=AIzaSyDiwFRivc9Lc8dqafvCrXtNYLfmBNHlEM", requestOptions)
+            .then(response => response.json())
+            .then(result => console.log(result.items))
+            .catch(error => console.log('error', error));
+
+    </script>
+
+</body>
+
+</html>
